@@ -1,10 +1,14 @@
 <script>
+    import { onMount, onDestroy } from 'svelte';
+    import {FeedbackStore} from '../stores'
+    import { fade, scale } from "svelte/transition";
     import FeedbackItem from "./FeedbackItem.svelte";
-export let feedback = [];
 
-console.log(feedback)
 </script>
 
-{#each feedback as item (item.id)}
+{#each $FeedbackStore as item (item.id)}
+<div in:scale out:fade>
     <FeedbackItem item={item} on:delete-feedback/>
+</div>
+
 {/each}
